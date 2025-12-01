@@ -1,8 +1,12 @@
 # 📘 FinanceBuddy AI Tutor (Dazia Project)
 
-AI-powered quiz generator built using Google Gemini 2.5 Flash, ChromaDB, and a custom RAG pipeline.
+🔗 **GitHub Repository:** https://github.com/Kapil-Iyer/Dazia-financebuddy-ai
 
-This system parses IFIC / CSC / LLQP textbooks, converts them into vector embeddings, and generates tailored finance quizzes through an Express.js API and a browser-based frontend.
+**FinanceBuddy is an AI-powered study assistant that transforms IFIC/CSC/LLQP textbooks into personalized finance quizzes.**
+
+It uses a Retrieval-Augmented Generation (RAG) pipeline with Google Gemini 2.5 Flash + ChromaDB to generate accurate, context-aware questions tailored to specific course materials. Designed for Dazia Consulting to power a freemium exam-prep platform.
+
+---
 
 ## 🔧 Tech Stack
 - **Node.js + TypeScript** – Backend logic & CLI tools
@@ -16,7 +20,7 @@ This system parses IFIC / CSC / LLQP textbooks, converts them into vector embedd
 This project is developed in collaboration with **Dazia Consulting**.
 
 **Core architecture & RAG pipeline:**
-* Built by **Sulaiman (Dazia Consulting)** Check him out at https://github.com/SulaimanS11
+* Built by **Sulaiman (Dazia Consulting)**  Check him out at https://github.com/SulaimanS11
 
 **Backend engineering, integration, expansion for IFIC/CSC/LLQP:**
 * **Kapil Iyer**
