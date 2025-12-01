@@ -16,7 +16,7 @@ This system parses IFIC / CSC / LLQP textbooks, converts them into vector embedd
 This project is developed in collaboration with **Dazia Consulting**.
 
 **Core architecture & RAG pipeline:**
-* Built by **Sulaiman (Dazia Consulting)**
+* Built by **Sulaiman (Dazia Consulting)** Check him out at https://github.com/SulaimanS11
 
 **Backend engineering, integration, expansion for IFIC/CSC/LLQP:**
 * **Kapil Iyer**
