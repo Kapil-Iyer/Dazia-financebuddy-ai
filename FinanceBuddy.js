@@ -8,7 +8,7 @@ const path = require('path');
 const { getContext } = require('./retrieve-context');
 
 // Initialize Gemini AI
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyC9cJDmHun36LFDIM76ScMMQNewJrB_7ks';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY ||;
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
     model: 'gemini-2.5-flash',
