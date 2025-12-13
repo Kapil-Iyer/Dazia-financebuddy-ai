@@ -8,7 +8,7 @@ const path = require('path');
 const { getContext } = require('./retrieve-context');
 
 // Initialize Gemini AI
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyC9cJDmHun36LFDIM76ScMMQNewJrB_7ks';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'YOUR-GEMINI-API-KEY-HERE';
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
     model: 'gemini-2.5-flash',
@@ -175,10 +175,10 @@ Respond with ONLY the JSON array, no other text:`;
 }
 
 async function generateQuizServer(subject, questions) {
-    const serverTemplate = `
-require('dotenv').config();
-const express = require('express');
+  const serverTemplate = `
 const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+const express = require('express');
 const cors = require('cors');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
@@ -186,13 +186,20 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Initialize Gemini AI
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyC9cJDmHun36LFDIM76ScMMQNewJrB_7ks';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+if (!GEMINI_API_KEY) {
+  console.error('❌ ERROR: GEMINI_API_KEY not found!');
+  console.error('Please ensure .env file exists in parent directory');
+  process.exit(1);
+}
+
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ 
+const model = genAI.getGenerativeModel({
   model: 'gemini-2.5-flash',
   generationConfig: {
     temperature: 0.7,
-    maxOutputTokens: 500,
+    maxOutputTokens: 1500,
   }
 });
 
