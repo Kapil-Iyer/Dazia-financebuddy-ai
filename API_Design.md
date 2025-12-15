@@ -509,7 +509,3 @@ This API design provides:
 ```
 
 ---
-
-**Copy everything above (scroll up to the first line that says ` ```markdown`) and save as `API_DESIGN.md`**
-
-**Then tell me: "Hour 1 complete"**
