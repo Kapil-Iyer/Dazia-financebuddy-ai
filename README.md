@@ -105,6 +105,106 @@ All endpoints return structured JSON and are designed for frontend or WordPress 
 
 ---
 
+## 🧪 API Testing (Week 5 – Verified)
+
+All endpoints were tested locally using **PowerShell Invoke-RestMethod** and `curl`.
+
+**Base URL:** `http://localhost:3000`  
+**Auth (MVP):** `x-user-id` header for freemium tracking
+
+---
+
+### Health Check (ChromaDB + Gemini)
+```powershell
+Invoke-RestMethod `
+  -Uri "http://localhost:3000/health" `
+  -Method Get |
+  ConvertTo-Json -Depth 5
+```
+### Topic Discovery
+```powershell
+Invoke-RestMethod `
+  -Uri "http://localhost:3000/api/topics?course=IFIC" `
+  -Method Get |
+  ConvertTo-Json -Depth 5
+```
+### Study Mode Chatbot
+```powershell
+Invoke-RestMethod `
+  -Uri "http://localhost:3000/api/chatbot/ask" `
+  -Headers @{ "x-user-id" = "demo_user" } `
+  -Method Post `
+  -ContentType "application/json" `
+  -Body '{
+    "course": "IFIC",
+    "question": "What is a TFSA?"
+  }' |
+  ConvertTo-Json -Depth 8
+```
+### Content Summarizer
+```powershell
+Invoke-RestMethod `
+  -Uri "http://localhost:3000/api/summarize" `
+  -Headers @{ "x-user-id" = "demo_user" } `
+  -Method Post `
+  -ContentType "application/json" `
+  -Body '{
+    "course": "IFIC",
+    "topic": "Mutual Funds",
+    "length": "short"
+  }' |
+  ConvertTo-Json -Depth 8
+```
+### Quiz Generator
+- **Similarity Threshold:** Tunable (0.3–0.5 depending on topic specificity)
+- (Example: more umbrella topics liike RRSP need lower threshold to retrieve relevant chunks, while specific topics like TFSA can work with 0.5 threshold, and form better specific questions)
+```powershell
+Invoke-RestMethod `
+  -Uri "http://localhost:3000/api/questions/generate" `
+  -Headers @{ "x-user-id" = "demo_user" } `
+  -Method Post `
+  -ContentType "application/json" `
+  -Body '{
+    "course": "IFIC",
+    "topic": "TFSA",
+    "count": 3
+  }' |
+  ConvertTo-Json -Depth 10
+```
+### Manual Usage tracker <= 20 for gemini-rate-limit
+```powershell
+Invoke-RestMethod `
+  -Uri "http://localhost:3000/api/track-usage" `
+  -Method Post `
+  -ContentType "application/json" `
+  -Body '{"userId":"demo_user_1","action":"quiz"}' |
+  ConvertTo-Json -Depth 10
+```
+### Freemium Enforcement Test when gemini is not rate limited (21st user blocked for free plan)
+Goal: The backend blocks expensive AI endpoints after 20 successful uses per user.
+```powershell
+for ($i = 1; $i -le 21; $i++) {
+  Write-Host "Request #$i"
+
+  try {
+    $resp = Invoke-RestMethod `
+      -Uri "http://localhost:3000/api/chatbot/ask" `
+      -Method Post `
+      -Headers @{ "x-user-id" = "limit_test_user" } `
+      -ContentType "application/json" `
+      -Body '{"course":"IFIC","question":"What is a TFSA?"}'
+
+    $resp | ConvertTo-Json -Depth 10
+  }
+  catch {
+    # If blocked, server returns 402 and PowerShell throws — print the response body
+    $_.Exception.Response.GetResponseStream() `
+      | % { (New-Object System.IO.StreamReader($_)).ReadToEnd() }
+  }
+}
+```
+---
+
 ## 📟 CLI Tools
 
 > **Note:** The CLI tools (`FinanceBuddy.js`, `retrieve-context.js`) were used for initial experimentation and RAG pipeline development. The system now exposes the same logic via production-ready HTTP API endpoints.
@@ -199,24 +299,33 @@ curl -X POST http://localhost:3000/api/questions/generate \
 
 ---
 
-## 🎯 Current Status (Week 4 Complete)
+## 🎯 Current Status (Week 5 Complete)
 
 ### ✅ Implemented & Tested
-- Backend API with Express.js
-- RAG pipeline with ChromaDB (1704 IFIC chunks)
-- Quiz generator endpoint (`POST /api/questions/generate`)
-- Study-mode chatbot endpoint (`POST /api/chatbot/ask`)
-- Health monitoring endpoint (`GET /health`)
-- Modular service architecture
-- Production-grade error handling
+- Express.js backend with modular service architecture
+- Retrieval-Augmented Generation (RAG) using ChromaDB
+- 1704 IFIC textbook chunks indexed
+- Quiz Generator API (`POST /api/questions/generate`)
+- Study-Mode Chatbot API (`POST /api/chatbot/ask`)
+- Topic Discovery API (`GET /api/topics`)
+- Content Summarizer API (`POST /api/summarize`)
+- Health Check API (`GET /health`)
+- Freemium usage tracking (20 free actions per user)
+- Automatic usage enforcement middleware
+- Graceful fallback when RAG context is unavailable
+- PowerShell & curl-based endpoint testing completed
 
-### 🚧 In Progress (Week 5+)
-- WordPress integration via iframe
-- Freemium usage tracking
-- Multi-turn conversation history
-- CSC and LLQP textbook processing
-- Frontend React interface
+### 🧠 Notes on RAG Behavior
+- Narrow, specific topics (e.g., **TFSA**) retrieve strong textbook context
+- Broader topics (e.g., **Registered Plans**) may retrieve fewer or no chunks
+- When no relevant chunks meet similarity thresholds, the system safely falls back to general exam knowledge
+- This behavior is intentional and prevents hallucinations
 
+### 🚧 Planned (Week 6+)
+- Frontend / WordPress integration
+- RAG similarity fine-tuning
+- Multi-turn chatbot memory
+- CSC & LLQP dataset expansion
 ---
 
 ## 📝 API Documentation
@@ -278,5 +387,5 @@ This project is proprietary to Dazia Consulting Inc.
 
 ---
 
-**Last Updated:** December 26, 2025  
-**Version:** Week 4 Backend API Complete
+**Last Updated:** December 29, 2025  
+**Version:** Week 5 – Backend Complete
