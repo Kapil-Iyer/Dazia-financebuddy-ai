@@ -63,3 +63,16 @@ export async function generateSummary(course, topic) {
   });
   return handleResponse(res);
 }
+
+// 6. Flashcards Generator
+export async function generateFlashcards(course, topic, count = 10) {
+  const res = await fetch(`${BASE_URL}/api/flashcards/generate`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-user-id": "demo_user"
+    },
+    body: JSON.stringify({ course, topic, count })
+  });
+  return handleResponse(res);
+}

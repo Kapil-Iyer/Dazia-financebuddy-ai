@@ -60,9 +60,28 @@ const generateMockChatResponse = (question) => {
   };
 };
 
+// 4. MOCK FLASHCARDS
+
+const generateMockFlashcards = (course, topic, count = 10) => {
+  const cards = [];
+  for (let i = 0; i < count; i++) {
+    cards.push({
+      front: `[MOCK] Question ${i + 1} about ${topic} in ${course}?`,
+      back: `[MOCK] Answer ${i + 1}: This is a simulated flashcard answer for ${topic}.`,
+      explanation: `[MOCK] Explanation: In a real scenario, this would provide detailed context.`
+    });
+  }
+  
+  return {
+    cards,
+    metadata: { source: "MOCK_MODE_ACTIVE", cardsGenerated: count }
+  };
+};
+
 // Export BOTH functions
 module.exports = {
   generateMockQuiz,
   generateMockSummary,
-  generateMockChatResponse
+  generateMockChatResponse,
+  generateMockFlashcards
 };

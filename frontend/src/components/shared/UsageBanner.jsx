@@ -1,5 +1,5 @@
 import React from 'react';
-import { theme } from '../theme'; // Ensure this points to your new theme.js
+import { theme } from '../../theme'; // Ensure this points to your new theme.js
 
 function UsageBanner({ usage }) {
   // 1. Safety Check (Matches your original logic)

@@ -5,15 +5,15 @@ import {
   LogOut, Sparkles, FileText, ChevronDown
 } from 'lucide-react';
 
-import Chatbot from './Chatbot';
-import QuizGenerator from './QuizGenerator';
-import Summarizer from './Summarizer';
+import Chatbot from '../components/tools/Chatbot';
+import QuizGenerator from '../components/tools/QuizGenerator';
+import Summarizer from '../components/tools/Summarizer';
 import { useCourse } from '../context/CourseContext';
 
 // ✅ CRITICAL FIX: Use original HealthStatus with backend check
-import HealthStatus from './HealthStatus';
+import HealthStatus from '../components/shared/HealthStatus';
 // ✅ Import dark-themed sidebar components
-import { DarkUsageBanner, ContextTip } from './SidebarCards';
+import { DarkUsageBanner, ContextTip } from '../components/shared/SidebarCards';
 
 const DashboardLayout = () => {
   const { course, setCourse } = useCourse();

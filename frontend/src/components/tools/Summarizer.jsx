@@ -1,8 +1,8 @@
 // src/components/Summarizer.jsx
 import { useState } from "react";
-import { useCourse } from "../context/CourseContext";
-import { generateSummary } from "../api/financeBuddyApi";
-import { theme } from "../theme";
+import { useCourse } from "../../context/CourseContext";
+import { generateSummary } from "../../api/financeBuddyApi";
+import { theme } from "../../theme";
 
 function Summarizer({ onUsageUpdate, onAskAI }) {
   const { course } = useCourse();

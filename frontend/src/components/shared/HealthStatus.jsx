@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getHealth } from "../api/financeBuddyApi";
-import { theme } from "../theme"; // ✅ 1. Import your new design system
+import { getHealth } from "../../api/financeBuddyApi";
+import { theme } from "../../theme"; // ✅ 1. Import your new design system
 
 function HealthStatus() {
   const [status, setStatus] = useState("checking"); // checking | ok | down

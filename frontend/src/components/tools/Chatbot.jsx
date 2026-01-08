@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { askChatbot } from "../api/financeBuddyApi";
-import { useCourse } from "../context/CourseContext";
+import { askChatbot } from "../../api/financeBuddyApi";
+import { useCourse } from "../../context/CourseContext";
 import { Send, Bot, AlertCircle, Loader2 } from 'lucide-react';
 
 function Chatbot({ onUsageUpdate, initialQuery }) {

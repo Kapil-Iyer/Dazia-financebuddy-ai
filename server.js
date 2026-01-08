@@ -270,6 +270,47 @@ app.post('/api/track-usage', (req, res) => {
   }
 });
 
+/**
+ * Flashcards Endpoint
+ * POST /api/flashcards/generate
+ */
+app.post('/api/flashcards/generate', enforceUsageLimit, async (req, res) => {
+  try {
+    const { topic, course, count } = req.body;
+    console.log(`🃏 Generating flashcards: ${course} - ${topic} (${count || 10} cards)`);
+
+    const flashcardsService = require('./services/flashcardsService');
+    const result = await flashcardsService.generateFlashcards(
+      topic,
+      course,
+      parseInt(count) || 10
+    );
+
+    const usage = usageTrackerService.consumeUsage(res.locals.userId, 'flashcards');
+
+    res.json({
+      success: true,
+      data: result,
+      usage
+    });
+
+  } catch (error) {
+    console.error('❌ Flashcard generation failed:', error.message);
+
+    let status = 500;
+    if (error.message.includes('INVALID')) status = 400;
+    if (error.message.includes('TIMEOUT')) status = 504;
+
+    res.status(status).json({
+      success: false,
+      error: {
+        code: error.message || 'GENERATION_FAILED',
+        message: 'Failed to generate flashcards'
+      }
+    });
+  }
+});
+
 
 // 404 handler
 app.use((req, res) => {

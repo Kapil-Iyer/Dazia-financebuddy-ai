@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getTopics, generateQuiz } from "../api/financeBuddyApi";
-import { useCourse } from "../context/CourseContext";
+import { getTopics, generateQuiz } from "../../api/financeBuddyApi";
+import { useCourse } from "../../context/CourseContext";
 import { BrainCircuit, CheckCircle2, XCircle, AlertCircle, Play, Sparkles } from 'lucide-react';
 
 function QuizGenerator({ onUsageUpdate, onAskAI }) {

@@ -1,6 +1,6 @@
 // src/components/SidebarCards.jsx
 import React from 'react';
-import { theme } from '../theme';
+import { theme } from '../../theme';
 
 // 1. A Reusable "Glass" Card Container
 const GlassCard = ({ children, border = false }) => (
