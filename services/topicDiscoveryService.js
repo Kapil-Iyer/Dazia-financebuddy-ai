@@ -5,43 +5,61 @@
  */
 
 const IFIC_TOPICS = [
-  "The Mutual Funds Industry",
-  "The Economy",
-  "Financial Statements",
-  "Money Markets and Interest Rates",
-  "Fixed-Income Securities",
-  "Equity Securities",
-  "Derivatives",
-  "Mutual Fund Structures",
-  "Taxation",
-  "Portfolio Management",
-  "Registered Plans (RRSP/TFSA)",
-  "Regulation and Ethics"
+  "Role of the mutual fund representative",
+  "Regulation, SROs, and ethics",
+  "Client discovery and risk profiling",
+  "Time value of money and inflation",
+  "Investment products overview",
+  "Mutual fund structure, pricing, and fees",
+  "Types of mutual funds",
+  "Portfolio construction with mutual funds",
+  "Taxation of mutual funds",
+  "Registered plans using mutual funds",
+  "Suitability, disclosure, and complaints"
 ];
 
 const CSC_TOPICS = [
-  "The Canadian Investment Marketplace",
-  "The Economy",
-  "Fixed-Income Securities",
-  "Common and Preferred Shares",
-  "Derivatives",
-  "Corporations and Financial Statements",
-  "Managed Products",
-  "Working with the Retail Client"
+  "Canadian financial system and regulators",
+  "Securities markets and trading mechanics",
+  "Debt securities and money markets",
+  "Equities and equity strategies",
+  "Derivatives and structured products",
+  "Pooled investments and managed products",
+  "Financial statements and corporate analysis",
+  "Portfolio theory and asset allocation",
+  "Taxation of investments in Canada",
+  "Registered plans and retirement planning",
+  "KYC, suitability, and ethics",
+  "Compliance and client management"
 ];
 
 const CAPM_TOPICS = [
-  "Project Risk Management",
-  "Cost Estimation",
-  "Scheduling Techniques",
-  "Stakeholder Management"
+  "Project management environment and terminology",
+  "Project roles and stakeholders",
+  "Project life cycle and integration",
+  "Scope and requirements management",
+  "Schedule management and critical path",
+  "Cost management and earned value",
+  "Quality management concepts",
+  "Resource and team management",
+  "Communication and stakeholder engagement",
+  "Risk management",
+  "Procurement basics",
+  "Agile and hybrid approaches"
 ];
 
 const PMP_TOPICS = [
-  "Life Insurance Basics",
-  "Underwriting",
-  "Policy Provisions",
-  "Ethics and Regulation"
+  "Project management principles",
+  "Performance domains",
+  "Business value and benefits management",
+  "Project planning across scope, schedule, and cost",
+  "Resource and stakeholder engagement",
+  "Risk, procurement, and change control",
+  "Project execution and leadership",
+  "Monitoring and controlling performance",
+  "Project closing and knowledge transfer",
+  "Agile and hybrid delivery approaches",
+  "Governance and PMOs"
 ];
 
 async function getTopics(course) {
