@@ -65,6 +65,7 @@ function DashboardLayoutV2() {
           padding: daziaTheme.spacing.lg,
           transition: 'grid-template-columns 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           overflow: 'hidden',
+          width: '100%'
         }}
       >
         {/* Quiz Panel */}

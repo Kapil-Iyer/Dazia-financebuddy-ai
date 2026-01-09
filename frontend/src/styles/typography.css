@@ -6,7 +6,7 @@
 /* Import Inter font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-/* ========== BASE TYPOGRAPHY ========== */
+/* ========== BASE TYPOGRAPHY (Standard Laptop) ========== */
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -15,7 +15,7 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 16px;  /* Increased from 14px */
+  font-size: 16px; 
   line-height: 1.5;
   color: #1A1A1A;
 }
@@ -83,77 +83,29 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ========== FONT WEIGHTS ========== */
 
-.font-normal {
-  font-weight: 400;
-}
-
-.font-medium {
-  font-weight: 500;
-}
-
-.font-semibold {
-  font-weight: 600;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.font-extrabold {
-  font-weight: 800;
-}
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
 
 /* ========== TEXT COLORS ========== */
 
-.text-primary {
-  color: #1A1A1A;
-}
-
-.text-secondary {
-  color: #6B7280;
-}
-
-.text-tertiary {
-  color: #9CA3AF;
-}
-
-.text-yellow {
-  color: #FDB913;
-}
-
-.text-navy {
-  color: #003B5C;
-}
-
-.text-success {
-  color: #10B981;
-}
-
-.text-error {
-  color: #EF4444;
-}
-
-.text-warning {
-  color: #F59E0B;
-}
-
-.text-info {
-  color: #3B82F6;
-}
+.text-primary { color: #1A1A1A; }
+.text-secondary { color: #6B7280; }
+.text-tertiary { color: #9CA3AF; }
+.text-yellow { color: #FDB913; }
+.text-navy { color: #003B5C; }
+.text-success { color: #10B981; }
+.text-error { color: #EF4444; }
+.text-warning { color: #F59E0B; }
+.text-info { color: #3B82F6; }
 
 /* ========== TEXT ALIGNMENT ========== */
 
-.text-left {
-  text-align: left;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-right {
-  text-align: right;
-}
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
 
 /* ========== TEXT UTILITIES ========== */
 
@@ -201,27 +153,23 @@ a:focus {
   border-radius: 2px;
 }
 
-/* ========== CHAT BUBBLES (LARGER TEXT) ========== */
+/* ========== STANDARD ELEMENTS ========== */
 
 .chat-message {
-  font-size: 17px;  /* Increased from 14-15px */
+  font-size: 17px; 
   line-height: 1.6;
 }
 
-/* ========== QUIZ QUESTIONS (LARGER TEXT) ========== */
-
 .quiz-question {
-  font-size: 18px;  /* Increased from 16px */
+  font-size: 18px; 
   line-height: 1.6;
   font-weight: 500;
 }
 
 .quiz-option {
-  font-size: 16px;  /* Increased from 14px */
+  font-size: 16px; 
   line-height: 1.5;
 }
-
-/* ========== CODE/MONO ========== */
 
 code, pre {
   font-family: 'Fira Code', 'Consolas', monospace;
@@ -241,3 +189,88 @@ pre {
   border-radius: 8px;
   overflow-x: auto;
 }
+
+/* ==========================================================================
+   🚀 COMMAND CENTER MODE (1920px+)
+   Scales Top Bar & Titles to match the big screen experience.
+   ========================================================================== */
+
+@media (min-width: 1920px) {
+  :root {
+    /* Base scaling factor */
+    font-size: 22px; 
+  }
+
+  body {
+    font-size: 1rem; 
+  }
+
+  /* --- 1. Fix Top Bar (Bigger & Taller) --- */
+  header {
+    height: auto !important;
+    min-height: 110px !important; /* Pulls panels down */
+    padding: 25px 40px !important; /* More space inside header */
+  }
+
+  /* Make header text match service text size */
+  header h2, header select, header span, header div {
+    font-size: 1.4rem !important; 
+  }
+
+  /* Scale header icons */
+  header svg {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* --- 2. Fix Service Tiles (Top Left of Panels) --- */
+  .heading-card {
+    font-size: 1.8rem !important; /* Much bigger title for panels */
+    margin-bottom: 24px !important;
+  }
+
+  /* --- 3. Panel Content Scaling (Keep your original preference) --- */
+  .chat-message {
+    font-size: 1.2rem; 
+    padding: 1.5rem 2rem;
+    line-height: 1.6;
+  }
+
+  .quiz-question {
+    font-size: 1.5rem; 
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  
+  .quiz-option {
+    font-size: 1.2rem; 
+    padding: 1.2rem 1.8rem;
+  }
+
+  input, textarea, select, button {
+    font-size: 1.1rem; 
+    padding: 1.4rem 2rem; 
+    border-radius: 14px;
+  }
+
+  /* --- 4. Pull Panels Down (Safety Buffer) --- */
+  main {
+    margin-top: 20px !important; /* Adds space between Header and Panels */
+    gap: 32px !important;
+    padding: 32px !important;
+  }
+}
+
+/* Super Ultrawide (3000px+) */
+@media (min-width: 3000px) {
+  :root {
+    font-size: 28px; 
+  }
+  
+  .heading-display { font-size: 4.5rem; } 
+  
+  main {
+    padding: 0 60px !important; 
+  }
+}
+
