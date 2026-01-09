@@ -4,9 +4,18 @@ import { daziaTheme } from '../../styles/daziaTheme';
 
 /**
  * Reusable Tool Panel Card
- * Handles hover, expansion, and layout states
+ * Fixes typography scaling and contrast issues
  */
-function ToolCard({ tool, title, icon, expanded, onExpand, onCollapse, children, prominent = false }) {
+function ToolCard({
+  tool,
+  title,
+  icon,
+  expanded,
+  onExpand,
+  onCollapse,
+  children,
+  prominent = false
+}) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -16,25 +25,27 @@ function ToolCard({ tool, title, icon, expanded, onExpand, onCollapse, children,
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => !expanded && onExpand()}
       style={{
-        background: daziaTheme.colors.white,
+        background: '#020617', // 🔑 dark surface (matches tools)
+        color: '#E5E7EB',
         borderRadius: daziaTheme.borderRadius.xl,
         border: `2px solid ${
-          expanded
+          expanded || isHovered
             ? daziaTheme.colors.primary
-            : isHovered
-            ? daziaTheme.colors.primary
-            : daziaTheme.colors.gray200
+            : 'rgba(255,255,255,0.08)'
         }`,
-        boxShadow: isHovered || expanded ? daziaTheme.shadows.hoverYellow : daziaTheme.shadows.md,
+        boxShadow: isHovered || expanded
+          ? daziaTheme.shadows.hoverYellow
+          : daziaTheme.shadows.md,
         padding: daziaTheme.spacing.lg,
         display: 'flex',
         flexDirection: 'column',
         cursor: expanded ? 'default' : 'pointer',
         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         height: '100%',
-        minHeight: prominent ? '600px' : '500px',
+        minHeight: prominent ? '600px' : '520px',
         position: 'relative',
         overflow: 'hidden',
+        fontSize: '16px' // ✅ FORCE BASE SIZE
       }}
     >
       {/* Header */}
@@ -45,7 +56,7 @@ function ToolCard({ tool, title, icon, expanded, onExpand, onCollapse, children,
           justifyContent: 'space-between',
           marginBottom: daziaTheme.spacing.lg,
           paddingBottom: daziaTheme.spacing.md,
-          borderBottom: `1px solid ${daziaTheme.colors.gray200}`,
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: daziaTheme.spacing.sm }}>
@@ -53,16 +64,15 @@ function ToolCard({ tool, title, icon, expanded, onExpand, onCollapse, children,
           <h3
             style={{
               margin: 0,
-              fontSize: daziaTheme.typography.fontSize.xl,
-              fontWeight: daziaTheme.typography.fontWeight.bold,
-              color: daziaTheme.colors.navy,
+              fontSize: '20px', // ✅ explicit readable title
+              fontWeight: 700,
+              color: '#F8FAFC',
             }}
           >
             {title}
           </h3>
         </div>
 
-        {/* Expand/Collapse Button */}
         {expanded && (
           <button
             onClick={(e) => {
@@ -74,12 +84,9 @@ function ToolCard({ tool, title, icon, expanded, onExpand, onCollapse, children,
               border: 'none',
               fontSize: '20px',
               cursor: 'pointer',
+              color: '#CBD5E1',
               padding: daziaTheme.spacing.xs,
-              borderRadius: daziaTheme.borderRadius.sm,
-              transition: 'background 0.2s ease',
             }}
-            onMouseOver={(e) => (e.currentTarget.style.background = daziaTheme.colors.gray100)}
-            onMouseOut={(e) => (e.currentTarget.style.background = 'transparent')}
           >
             ✕
           </button>
@@ -87,9 +94,18 @@ function ToolCard({ tool, title, icon, expanded, onExpand, onCollapse, children,
       </div>
 
       {/* Content */}
-      <div style={{ flex: 1, overflow: 'auto' }}>{children}</div>
+      <div
+        style={{
+          flex: 1,
+          overflow: 'auto',
+          fontSize: '1rem',   // 🔑 locks readable size
+          lineHeight: '1.6'
+        }}
+      >
+        {children}
+      </div>
 
-      {/* Hover Hint (when not expanded) */}
+      {/* Hover Hint */}
       {!expanded && isHovered && (
         <div
           className="fade-in"
@@ -99,11 +115,11 @@ function ToolCard({ tool, title, icon, expanded, onExpand, onCollapse, children,
             left: '50%',
             transform: 'translateX(-50%)',
             background: daziaTheme.colors.primary,
-            color: daziaTheme.colors.white,
+            color: '#020617',
             padding: `${daziaTheme.spacing.sm} ${daziaTheme.spacing.lg}`,
             borderRadius: daziaTheme.borderRadius.full,
-            fontSize: daziaTheme.typography.fontSize.sm,
-            fontWeight: daziaTheme.typography.fontWeight.semibold,
+            fontSize: '14px',
+            fontWeight: 600,
             whiteSpace: 'nowrap',
             boxShadow: daziaTheme.shadows.md,
           }}
