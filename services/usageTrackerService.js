@@ -150,6 +150,27 @@ class UsageTrackerService {
 
     return this.getUsage(userId);
   }
+
+    /**
+   * DEV ONLY — Reset usage for a single user
+   */
+  resetUser(userId) {
+    if (!userId) return;
+
+    if (this.usageData[userId]) {
+      delete this.usageData[userId];
+      this._saveData();
+    }
+  }
+
+  /**
+   * DEV ONLY — Reset usage for ALL users
+   */
+  resetAll() {
+    this.usageData = {};
+    this._saveData();
+  }
+
 }
 
 module.exports = new UsageTrackerService();

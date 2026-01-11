@@ -7,7 +7,7 @@ import Flashcards from '../tools/Flashcards';
  * Enhanced Floating Flashcards Panel
  * Bottom-center, bigger, better animations
  */
-function FlashcardsFloatingPanel({ onUsageUpdate }) {
+function FlashcardsFloatingPanel({ usage, onUsageUpdate }) { // ✅ 1. Accept usage prop
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -22,8 +22,8 @@ function FlashcardsFloatingPanel({ onUsageUpdate }) {
             bottom: 0,
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '500px',                           // ← BIGGER (was 400px)
-            height: '70px',                           // ← TALLER (was 60px)
+            width: '500px',                       // ← BIGGER (was 400px)
+            height: '70px',                       // ← TALLER (was 60px)
             background: daziaTheme.colors.primary,
             borderRadius: `${daziaTheme.borderRadius.xl} ${daziaTheme.borderRadius.xl} 0 0`,
             boxShadow: '0 -4px 20px rgba(253, 185, 19, 0.5)',  // ← Yellow glow
@@ -49,7 +49,7 @@ function FlashcardsFloatingPanel({ onUsageUpdate }) {
           <span style={{ fontSize: '36px' }}>📚</span>  {/* ← BIGGER icon */}
           <span
             style={{
-              fontSize: '24px',                       // ← BIGGER text (was 18px)
+              fontSize: '24px',                      // ← BIGGER text (was 18px)
               fontWeight: 700,
               color: daziaTheme.colors.white,
               letterSpacing: '0.02em',
@@ -150,7 +150,8 @@ function FlashcardsFloatingPanel({ onUsageUpdate }) {
 
             {/* Content */}
             <div style={{ flex: 1, padding: daziaTheme.spacing.xl, overflow: 'auto' }}>
-              <Flashcards onUsageUpdate={onUsageUpdate} />
+              {/* ✅ 2. Pass usage prop down to Flashcards */}
+              <Flashcards usage={usage} onUsageUpdate={onUsageUpdate} />
             </div>
           </div>
         </>

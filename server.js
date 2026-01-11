@@ -52,6 +52,41 @@ function getUserId(req) {
   return req.headers['x-user-id'] || req.body.userId || 'demo_user';
 }
 
+/**
+ * =====================================================
+ * DEV ONLY — Reset usage for testing
+ * POST /api/dev/reset-usage
+ * =====================================================
+ */
+app.post('/api/dev/reset-usage', (req, res) => {
+  // Hard safety guard
+  if (
+    process.env.NODE_ENV !== 'development' ||
+    process.env.DEV_RESET_ENABLED !== 'true'
+  ) {
+    return res.status(403).json({
+      success: false,
+      error: { code: 'FORBIDDEN', message: 'Not allowed' }
+    });
+  }
+
+  const userId = req.body?.userId;
+
+  if (userId) {
+    usageTrackerService.resetUser(userId);
+    console.log(`🔁 DEV RESET: usage reset for user ${userId}`);
+  } else {
+    usageTrackerService.resetAll();
+    console.log('🔁 DEV RESET: usage reset for ALL users');
+  }
+
+  res.json({
+    success: true,
+    message: 'Usage reset successfully'
+  });
+});
+
+
 // ========== USAGE ENFORCEMENT (UPDATED) ==========
 
 // Map endpoints to the specific tool action they consume
