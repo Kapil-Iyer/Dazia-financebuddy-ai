@@ -329,6 +329,7 @@ If you are the next Riipen student:
   * ❌ Cannot push to `main`
   * ✅ Can fork and submit pull requests
 * Only the repo owner controls merges
+* Advise to clone repo to make your own to make push commits to your repo (seperate of this repo)
 
 ---
 
