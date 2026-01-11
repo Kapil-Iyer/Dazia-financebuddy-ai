@@ -312,11 +312,10 @@ If you are the next Riipen student:
 
 * Deploy backend (Render / Railway)
 * Deploy frontend (Vercel / Netlify)
-* Integrate WordPress gatekeeper
+* Integrate WordPress gatekeeper and reorganise dazia website
 * Replace `x-user-id` with real authentication
 * Enable paid plans based on Tutor_Bot_Research_Report.md (payment plan) and paid plan frontend UI screen after usage
-* Add CSC Volume 1 / Volume 2 PDFs to RAG
-* Expand analytics and monitoring
+* Expand analytics and monitoring and create mobile app version (web view app recommended for first prototype)
 
 ---
 
