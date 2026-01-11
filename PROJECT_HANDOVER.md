@@ -314,7 +314,7 @@ If you are the next Riipen student:
 * Deploy frontend (Vercel / Netlify)
 * Integrate WordPress gatekeeper
 * Replace `x-user-id` with real authentication
-* Enable paid plans
+* Enable paid plans based on Tutor_Bot_Research_Report.md (payment plan) and paid plan frontend UI screen after usage
 * Add CSC Volume 1 / Volume 2 PDFs to RAG
 * Expand analytics and monitoring
 
