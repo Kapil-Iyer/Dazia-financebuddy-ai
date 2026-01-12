@@ -279,7 +279,7 @@ FinanceBuddy/
 
 ### ✅ Completed
 
-* Backend RAG pipeline
+* Backend RAG pipeline with courses IFIC, CSC Vol 1 and Vol 2
 * Persistent ChromaDB
 * Quiz, Chat, Summarizer, Flashcards
 * Freemium enforcement
@@ -292,8 +292,6 @@ FinanceBuddy/
 * Deployment
 * Paid subscription hooks
 * Multi-turn tutor memory
-* CSC Vol 2 dataset expansion
-
 ---
 
 ## 📞 Contact
